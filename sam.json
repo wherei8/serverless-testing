@@ -1,0 +1,56 @@
+{
+    "Transform": "AWS::Serverless-2016-10-31",
+    "Description": "Serverless Stack and Pipeline",
+    "Parameters": {
+        "OriginUrl": {
+            "Description": "The origin url to allow CORS requests from. This will be the base URL of the static website.",
+            "Type": "String",
+            "Default": "*"
+        }
+    },
+    "Resources": {
+        "GetSAMPartyCount": {
+            "Type": "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "index.handler",
+                "Runtime": "nodejs4.3",
+                "CodeUri": "./",
+                "Environment": {
+                    "Variables": {
+                        "ORIGIN_URL": { "Ref": "OriginUrl" }
+                    }
+                },
+                "Events": {
+                    "GetResource": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/sam",
+                            "Method": "get"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "ApiUrl": {
+            "Description": "URL of API Endpoint",
+            "Value": {
+                "Fn::Join": [
+                    "",
+                    [
+                        "https://",
+                        {
+                            "Ref": "ServerlessRestApi"
+                        },
+                        ".execute-api.",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        ".amazonaws.com/Prod"
+                    ]
+                ]
+            }
+        }
+    }
+}
