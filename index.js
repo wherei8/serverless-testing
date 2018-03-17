@@ -10,13 +10,13 @@ exports.handler = (event, context, callback) => {
 
     var originURL = process.env.ORIGIN_URL || '*';
 
-    /*
+
     if (!event.requestContext.authorizer) {
       errorResponse('Authorization not configured', context.awsRequestId, callback);
       return;
     }
     const username = event.requestContext.authorizer.claims['cognito:username'];
-    */
+
 
     emitLambdaAge();
 
@@ -55,7 +55,7 @@ function emitLambdaAge() {
 }
 
 
-/*
+
 function errorResponse(errorMessage, awsRequestId, callback) {
   callback(null, {
     statusCode: 500,
@@ -68,4 +68,4 @@ function errorResponse(errorMessage, awsRequestId, callback) {
     },
   });
 }
-*/
+
