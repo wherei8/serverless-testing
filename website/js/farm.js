@@ -112,9 +112,9 @@ var authToken;
         // Placeholder for Lambda authentication when CORS is better supported through SAM.
         // See: https://github.com/awslabs/serverless-application-model/issues/23
         // Currently, page is redirected back to sign-ni page based on presence of auth token.
-        /* headers: {
+         headers: {
             Authorization: authToken
-        }, */
+        }, 
         success: function(data) {
             DESIRED_SAM_COUNT = data;
         }
