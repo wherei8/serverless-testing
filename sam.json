@@ -52,5 +52,9 @@
                 ]
             }
         }
+    },
+    "Cors": {
+        "AllowOrigin":"*",
+        "AllowHeaders":"Authorization"
     }
 }
